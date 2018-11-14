@@ -14,9 +14,11 @@ public class UserFactoryTest {
         };
         System.out.println(innerClazz.create("jack", 18));
 
+        /** Lambda 常规写法 */
         UserFactory lambda1 = (name, age) -> new User(name, age);
         System.out.println(lambda1.create("lily", 18));
 
+        /** Lambda 构造函数引用 */
         UserFactory lambda2 = User::new;
         System.out.println(lambda2.create("lucy", 18));
     }

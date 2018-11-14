@@ -2,6 +2,8 @@
 
 主要用于测试 Java 新版中出现的一些新的特性
 
+## Java 8 新特性
+
 ### 为什么要学习 Java 8
 
 - 以前
@@ -74,6 +76,9 @@ public interface MyInterface {
 
 ### Lambda 表达式
 
+定义：是一个匿名函数，Lambda 表达式基于数学中的 λ 演算得名，
+直接对应于其中的lambda抽象(lambda abstraction)，是一个匿名函数，即没有函数名的函数。
+
 - 以前
 ```java
 MyInterface innerClazz = new MyInterface() {
@@ -87,9 +92,7 @@ System.out.println(innerClazz.sum(1, 2));
 
 - 现在
 ```java
-MyInterface lambda = (int num1, int num2) -> {
-    return num1 + num2;
-};
+MyInterface lambda = (int num1, int num2) -> { return num1 + num2;};
 System.out.println(lambda.sum(1, 2));
 
 /** 更简单的写法 */
@@ -97,13 +100,14 @@ MyInterface lambda2 = (num1, num2) -> num1 + num2;
 System.out.println(lambda2.sum(1, 2));
 ```
 
-Lambda 简写
-- 形参类型，可省略，JVM 自动推断
-- 只有一个形参，可省略 `()`
-- 没有形参，则用 `() -> {}`
+#### Lambda 表达式特点
+- 基本构造：参数、箭头、实现主体 `(int arg1) -> {}`
+- 参类型，可省略，JVM 自动推断
+- 只有一个参数，可省略 `()`
+- 没有参数，则用 `() -> {}`
 - 实现只有一行代码，可省略 `{}` 和 `return`
 
-- 构造函数引用
+#### 构造函数引用
 
 ```java
 package com.panxiaoan.sample.java8.base;
@@ -118,9 +122,11 @@ public class UserFactoryTest {
         };
         System.out.println(innerClazz.create("jack", 18));
 
+        /** Lambda 常规写法 */
         UserFactory lambda1 = (name, age) -> new User(name, age);
         System.out.println(lambda1.create("lily", 18));
 
+        /** Lambda 构造函数引用 */
         UserFactory lambda2 = User::new;
         System.out.println(lambda2.create("lucy", 18));
     }
