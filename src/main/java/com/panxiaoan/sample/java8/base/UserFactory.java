@@ -8,5 +8,5 @@ package com.panxiaoan.sample.java8.base;
  */
 @FunctionalInterface
 public interface UserFactory {
-    User create(String name, Integer age);
+    User create(String name, Integer age, Integer grade);
 }
