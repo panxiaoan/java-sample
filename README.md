@@ -267,38 +267,38 @@ package com.panxiaoan.sample.java8.base;
 import java.util.Arrays;public class UserFactoryTest {
 
     /** 测试：使用做数据收集 */
-        @Test
-        public void test6() {
-            System.out.println("按年级分组用户");
-            Map<Integer, List<User>> tempMap = dataList.stream().collect(Collectors.groupingBy(User::getGrade));
-            tempMap.entrySet().iterator().forEachRemaining(System.out::println);
-    
-            System.out.println("按年级和年龄分组用户");
-            Map<Integer, Map<Integer, List<User>>> tempMap2 = dataList.stream()
-                .collect(Collectors.groupingBy(User::getGrade, Collectors.groupingBy(User::getAge)));
-            tempMap2.entrySet().iterator().forEachRemaining(System.out::println);
-    
-            System.out.println("计算每个年级有多少个用户");
-            Map<Integer, Long> tempMap3 = dataList.stream()
-                .collect(Collectors.groupingBy(User::getGrade, Collectors.counting()));
-            tempMap3.entrySet().iterator().forEachRemaining(System.out::println);
-    
-            System.out.println("年龄最大和最小的用户");
-            Optional<User> maxAgeUser = dataList.stream().collect(Collectors.maxBy(Comparator.comparing(User::getAge)));
-            System.out.println("maxAgeUser: " + maxAgeUser.get());
-            Optional<User> minAgeUser = dataList.stream().collect(Collectors.minBy(Comparator.comparing(User::getAge)));
-            System.out.println("minAgeUser: " + minAgeUser.get());
-    
-            System.out.println("汇总年龄和平均年龄");
-            Integer sumAge = dataList.stream().collect(Collectors.summingInt(User::getAge));
-            System.out.println("sumAge: " + sumAge);
-            Double avgAge = dataList.stream().collect(Collectors.averagingDouble(User::getAge));
-            System.out.println("avgAge: " + avgAge);
-    
-            System.out.println("将姓名连接成字符串");
-            String name = dataList.stream().map(User::getName).collect(Collectors.joining(", "));
-            System.out.println(name);
-        }
+    @Test
+    public void test6() {
+        System.out.println("按年级分组用户");
+        Map<Integer, List<User>> tempMap = dataList.stream().collect(Collectors.groupingBy(User::getGrade));
+        tempMap.entrySet().iterator().forEachRemaining(System.out::println);
+
+        System.out.println("按年级和年龄分组用户");
+        Map<Integer, Map<Integer, List<User>>> tempMap2 = dataList.stream()
+            .collect(Collectors.groupingBy(User::getGrade, Collectors.groupingBy(User::getAge)));
+        tempMap2.entrySet().iterator().forEachRemaining(System.out::println);
+
+        System.out.println("计算每个年级有多少个用户");
+        Map<Integer, Long> tempMap3 = dataList.stream()
+            .collect(Collectors.groupingBy(User::getGrade, Collectors.counting()));
+        tempMap3.entrySet().iterator().forEachRemaining(System.out::println);
+
+        System.out.println("年龄最大和最小的用户");
+        Optional<User> maxAgeUser = dataList.stream().collect(Collectors.maxBy(Comparator.comparing(User::getAge)));
+        System.out.println("maxAgeUser: " + maxAgeUser.get());
+        Optional<User> minAgeUser = dataList.stream().collect(Collectors.minBy(Comparator.comparing(User::getAge)));
+        System.out.println("minAgeUser: " + minAgeUser.get());
+
+        System.out.println("汇总年龄和平均年龄");
+        Integer sumAge = dataList.stream().collect(Collectors.summingInt(User::getAge));
+        System.out.println("sumAge: " + sumAge);
+        Double avgAge = dataList.stream().collect(Collectors.averagingDouble(User::getAge));
+        System.out.println("avgAge: " + avgAge);
+
+        System.out.println("将姓名连接成字符串");
+        String name = dataList.stream().map(User::getName).collect(Collectors.joining(", "));
+        System.out.println(name);
+    }
 }
 ```
 
