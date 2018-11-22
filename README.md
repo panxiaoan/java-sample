@@ -18,7 +18,7 @@ Collections.sort(inventory, new Comparator<Apple>() {
 
 - 现在
 
-```code
+```java
 // 给库存排序，按重量
 inventory.sort(Comparator.comparing(Apple::getWeight));
 ```
