@@ -1,5 +1,9 @@
 package com.panxiaoan.sample.java8.base;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -7,9 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:xiaoan.pan@qq.com">潘小安</a>
@@ -81,12 +82,12 @@ public class UserFactoryTest {
     public void test3() {
         System.out.println("过滤年级大于 1， 以年龄排序，提取姓名，保存到 List 中");
         List<String> tempList = this.dataList.stream().filter(user -> user.getGrade() > 1)
-            .sorted(Comparator.comparing(User::getAge)).map(User::getName).collect(Collectors.toList());
+                .sorted(Comparator.comparing(User::getAge)).map(User::getName).collect(Collectors.toList());
         tempList.stream().forEach(System.out::println);
 
         System.out.println("多核并行计算");
         tempList = this.dataList.parallelStream().filter(user -> user.getGrade() > 1)
-            .sorted(Comparator.comparing(User::getAge)).map(User::getName).limit(1).collect(Collectors.toList());
+                .sorted(Comparator.comparing(User::getAge)).map(User::getName).limit(1).collect(Collectors.toList());
         tempList.stream().forEach(System.out::println);
     }
 
@@ -96,7 +97,7 @@ public class UserFactoryTest {
         System.out.println("去掉重复的字母");
         String[] words = {"Goodbye", "World"};
         List<String> tempList = Arrays.stream(words).map(w -> w.split("")).flatMap(Arrays::stream).distinct()
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
         tempList.stream().forEach(System.out::println);
     }
 
@@ -127,12 +128,12 @@ public class UserFactoryTest {
 
         System.out.println("按年级和年龄分组用户");
         Map<Integer, Map<Integer, List<User>>> tempMap2 = dataList.stream()
-            .collect(Collectors.groupingBy(User::getGrade, Collectors.groupingBy(User::getAge)));
+                .collect(Collectors.groupingBy(User::getGrade, Collectors.groupingBy(User::getAge)));
         tempMap2.entrySet().iterator().forEachRemaining(System.out::println);
 
         System.out.println("计算每个年级有多少个用户");
         Map<Integer, Long> tempMap3 = dataList.stream()
-            .collect(Collectors.groupingBy(User::getGrade, Collectors.counting()));
+                .collect(Collectors.groupingBy(User::getGrade, Collectors.counting()));
         tempMap3.entrySet().iterator().forEachRemaining(System.out::println);
 
         System.out.println("年龄最大和最小的用户");
